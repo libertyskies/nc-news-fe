@@ -18,7 +18,6 @@ export default function ArticleCard({ article_id }) {
     <div className="article-card">
       <h3 className="article-title"> {article[0].title}</h3>
       <h4 className="article-author">{article[0].author}</h4>
-      <p className="article-body">{article[0].body}</p>
       <img
         className="article-img"
         src={article[0].article_img_url}
