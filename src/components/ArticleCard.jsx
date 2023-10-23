@@ -26,5 +26,3 @@ export default function ArticleCard({ article_id }) {
     </div>
   );
 }
-
-//       <p className="article-topic">{article[0].topic}</p>
