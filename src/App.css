@@ -1,6 +1,57 @@
 #root {
-  max-width: 1280px;
+  max-width: 1680px;
   margin: 0 auto;
-  padding: 2rem;
+  /* padding: 2rem; */
   text-align: center;
+
+  color-scheme: light dark;
+  color: rgba(0, 0, 0, 0.87);
+  background-color: #fcfcfc;
+}
+
+a {
+  font-weight: 500;
+  color: #548687;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #75a8a9;
+}
+
+body {
+  margin: 0;
+  display: flex;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+.nav-item {
+  text-transform: capitalize;
+  font-size: 20px;
+}
+
+.articles-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: repeat(1fr, 1fr);
+}
+.article-card {
+  border: #a7a0a0 solid;
+  margin: 1.5%;
+}
+.article-title {
+  text-decoration: underline;
+  font-size: 19px;
+}
+.article-topic {
+  text-transform: capitalize;
+}
+.article-author {
+  display: inline;
+}
+.article-img {
+  width: 90%;
 }
