@@ -44,7 +44,7 @@ h1 {
 }
 .article-title {
   text-decoration: underline;
-  font-size: 19px;
+  font-size: 29px;
 }
 .article-topic {
   text-transform: capitalize;
@@ -52,6 +52,15 @@ h1 {
 .article-author {
   display: inline;
 }
-.article-img {
-  width: 90%;
+.article-page {
+  margin: 10px 5% 10px 5%;
+  border: black solid;
+}
+.single-article-img {
+  width: 60%;
+}
+.single-article-text {
+  font-size: 22px;
+}
+.single-article-author {
 }
