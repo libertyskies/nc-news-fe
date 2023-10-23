@@ -18,16 +18,13 @@ export default function NavBar() {
   return (
     <nav>
       {allTopics.map((topic, index) => {
-        if (index === allTopics.length - 1) {
-          return (
-            <Link to={`/${topic}`} key={`${topic}`} className="nav-item">
-              {topic}
-            </Link>
-          );
+        let navTopic = topic;
+        if (index !== allTopics.length - 1) {
+          navTopic += " | ";
         }
         return (
           <Link to={`/${topic}`} key={`${topic}`} className="nav-item">
-            {topic} | {"   "}
+            {navTopic}
           </Link>
         );
       })}
