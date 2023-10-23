@@ -28,6 +28,3 @@ export default function ArticleCard({ article_id }) {
     </Link>
   );
 }
-
-//       <p className="article-topic">{article[0].topic}</p>
-//     <h4 className="article-author">{article[0].author}</h4>
