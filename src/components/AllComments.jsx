@@ -3,6 +3,7 @@ import * as api from "../api";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import CommentCard from "./CommentCard";
+import CommentAdder from "./CommentAdder";
 
 export default function AllComments() {
   const { article_id } = useParams();
@@ -36,14 +37,17 @@ export default function AllComments() {
   return isLoading ? (
     <p>Loading comments...</p>
   ) : (
-    <div className="comment-list">
+    <>
       <Link to={`/articles/${article_id}`}>
         <h3 className="single-article-title">... {articleTitle}</h3>
       </Link>
       <h4 className="comments-title">Comments</h4>
-      {allComments.map((comment, index) => {
-        return <CommentCard comment={comment} key={comment.comment_id} />;
-      })}
-    </div>
+      <CommentAdder />
+      <div className="comment-list">
+        {allComments.map((comment, index) => {
+          return <CommentCard comment={comment} key={comment.comment_id} />;
+        })}
+      </div>
+    </>
   );
 }

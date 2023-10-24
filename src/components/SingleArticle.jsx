@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import * as api from "../api";
 import VoteAdder from "./VoteAdder";
 import CommentList from "./CommentList";
+import CommentAdder from "./CommentAdder";
 
 export default function SingleArticle() {
   const [article, setArticle] = useState([]);
@@ -34,6 +35,7 @@ export default function SingleArticle() {
       />
       <p className="single-article-text">{article[0].body}</p>
       <VoteAdder item={article[0]} />
+      <CommentAdder />
       {commentsHidden ? (
         <>
           <button
