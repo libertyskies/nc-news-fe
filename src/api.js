@@ -36,3 +36,14 @@ export const getArticleById = (article_id) => {
       return err;
     });
 };
+
+export const getCommentsByArticleId = (article_id) => {
+  return request
+    .get(`articles/${article_id}/comments`)
+    .then(({ data: { comments } }) => {
+      return comments;
+    })
+    .catch((err) => {
+      return err;
+    });
+};
