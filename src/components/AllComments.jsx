@@ -37,7 +37,9 @@ export default function AllComments() {
     <p>Loading comments...</p>
   ) : (
     <div className="comment-list">
-      <h3 className="single-article-title">{articleTitle}</h3>
+      <Link to={`/articles/${article_id}`}>
+        <h3 className="single-article-title">{articleTitle}</h3>
+      </Link>
       <h4 className="comments-title">Comments</h4>
       {allComments.map((comment, index) => {
         return <CommentCard comment={comment} key={comment.comment_id} />;
