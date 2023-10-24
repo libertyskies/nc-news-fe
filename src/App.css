@@ -77,10 +77,36 @@ h1 {
   margin: 5px 25% 5px 25%;
   border: black solid;
 }
+.comments-title {
+  font-size: 25px;
+}
 .comment-votes {
   font-size: 18px;
 }
 .comment-list {
   font-size: 18px;
   margin: 0 8% 0 8%;
+}
+.comments-button {
+  padding: 10px 20px;
+  border-radius: 15px;
+  width: 40%;
+  background-color: lightblue;
+  border: none;
+  color: black;
+}
+.comments-button:hover {
+  box-shadow:
+    0 12px 16px 0 rgba(0, 0, 0, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
+.comment-container {
+  margin: 10px 50px 10px 50px;
+}
+.comment-author {
+  color: blue;
+  font-weight: bold;
+}
+.comment-body {
+  font-size: 19px;
 }
