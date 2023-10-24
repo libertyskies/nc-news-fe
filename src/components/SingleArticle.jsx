@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import * as api from "../api";
+import VoteAdder from "./VoteAdder";
+import CommentList from "./CommentList";
 
 export default function SingleArticle() {
   const [article, setArticle] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [commentsHidden, setCommentsHidden] = useState(true);
   const { article_id } = useParams();
 
   useEffect(() => {
@@ -12,7 +15,11 @@ export default function SingleArticle() {
       setArticle(article);
       setIsLoading(false);
     });
-  }, []);
+  }, [commentsHidden]);
+
+  const handleClick = () => {
+    setCommentsHidden(!commentsHidden);
+  };
 
   return isLoading ? (
     <p>Loading article...</p>
@@ -26,6 +33,17 @@ export default function SingleArticle() {
         alt={`an image of ${article[0].title}`}
       />
       <p className="single-article-text">{article[0].body}</p>
+      <VoteAdder item={article[0]} />
+      {commentsHidden ? (
+        <>
+          <p onClick={handleClick}>Show Comments +</p>
+        </>
+      ) : (
+        <>
+          <p onClick={handleClick}>Hide Comments -</p>
+          <CommentList id={article[0].article_id} />
+        </>
+      )}
     </div>
   );
 }

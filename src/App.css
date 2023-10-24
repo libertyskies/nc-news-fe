@@ -30,7 +30,7 @@ h1 {
 
 .nav-item {
   text-transform: capitalize;
-  font-size: 20px;
+  font-size: 25px;
 }
 
 .articles-container {
@@ -55,12 +55,32 @@ h1 {
 .article-page {
   margin: 10px 5% 10px 5%;
   border: black solid;
+  padding: 10px;
 }
 .single-article-img {
   width: 60%;
 }
 .single-article-text {
   font-size: 22px;
+  padding: 20px;
+}
+.single-article-title {
+  text-decoration: underline;
+  font-size: 29px;
 }
 .single-article-author {
+  display: absolute;
+  font-size: 24px;
+}
+.article-votes {
+  font-size: 22px;
+  margin: 5px 25% 5px 25%;
+  border: black solid;
+}
+.comment-votes {
+  font-size: 18px;
+}
+.comment-list {
+  font-size: 18px;
+  margin: 0 8% 0 8%;
 }
