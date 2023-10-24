@@ -57,6 +57,10 @@ h1 {
   border: black solid;
   padding: 10px;
 }
+
+.article-img {
+  width: 70%;
+}
 .single-article-img {
   width: 60%;
 }
@@ -103,6 +107,7 @@ h1 {
 }
 .comment-container {
   margin: 10px 50px 10px 50px;
+  border: black solid;
 }
 .comment-author {
   color: blue;
