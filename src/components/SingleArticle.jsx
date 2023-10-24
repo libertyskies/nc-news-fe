@@ -36,11 +36,21 @@ export default function SingleArticle() {
       <VoteAdder item={article[0]} />
       {commentsHidden ? (
         <>
-          <p onClick={handleClick}>Show Comments +</p>
+          <button
+            onClick={handleClick}
+            className="show-comments comments-button"
+          >
+            Show Comments +
+          </button>
         </>
       ) : (
         <>
-          <p onClick={handleClick}>Hide Comments -</p>
+          <button
+            onClick={handleClick}
+            className="show-comments comments-button"
+          >
+            Hide Comments -
+          </button>
           <CommentList id={article[0].article_id} />
         </>
       )}

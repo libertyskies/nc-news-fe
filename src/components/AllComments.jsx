@@ -1,14 +1,18 @@
 import React, { useState, useEffect } from "react";
 import * as api from "../api";
 import { Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import CommentCard from "./CommentCard";
 
-export default function CommentList({ id }) {
+export default function AllComments() {
+  const { article_id } = useParams();
   const [allComments, setAllComments] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [articleTitle, setArticleTitle] = useState("");
 
   useEffect(() => {
-    api.getCommentsByArticleId(id).then((comments) => {
+    setIsLoading(true);
+    api.getCommentsByArticleId(article_id).then((comments) => {
       let sortedComments = comments.sort((c1, c2) =>
         c1.created_At < c2.created_At
           ? 1
@@ -19,25 +23,27 @@ export default function CommentList({ id }) {
       setAllComments(sortedComments);
       setIsLoading(false);
     });
-  });
+  }, []);
+
+  useEffect(() => {
+    setIsLoading(true);
+    api.getArticleById(article_id).then((article) => {
+      setArticleTitle(article[0].title);
+      setIsLoading(false);
+    });
+  }, []);
+
   return isLoading ? (
     <p>Loading comments...</p>
   ) : (
     <div className="comment-list">
+      <Link to={`/articles/${article_id}`}>
+        <h3 className="single-article-title">{articleTitle}</h3>
+      </Link>
+      <h4 className="comments-title">Comments</h4>
       {allComments.map((comment, index) => {
-        if (index < 4) {
-          return <CommentCard comment={comment} key={comment.comment_id} />;
-        }
+        return <CommentCard comment={comment} key={comment.comment_id} />;
       })}
-      {allComments.length > 4 ? (
-        <Link to={`comments`}>
-          <button className="more-comments comments-button">
-            Show more comments
-          </button>
-        </Link>
-      ) : (
-        ""
-      )}
     </div>
   );
 }
