@@ -23,12 +23,13 @@ export default function CommentAdder(id) {
 
     api
       .postComment(username, finalComment, id)
-      .then((comment) => {
+      .then(() => {
         setPostingError(null);
         setHasPosted(true);
       })
       .catch((err) => {
         setPostingError(err.response.data.msg);
+        setHasPosted(false);
       });
   };
   const handleCommentChange = (e) => {
