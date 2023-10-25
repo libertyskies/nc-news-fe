@@ -57,7 +57,15 @@ h1 {
   border: black solid;
   padding: 10px;
 }
-
+.article-card-stats {
+  display: flex;
+}
+.article-card-votes {
+  margin-left: 10%;
+}
+.article-card-comment-count {
+  margin-left: 30%;
+}
 .article-img {
   width: 70%;
 }
@@ -115,4 +123,25 @@ h1 {
 }
 .comment-body {
   font-size: 19px;
+}
+
+.new-comment-form {
+  margin: 18px;
+  display: block;
+}
+.new-comment {
+  padding: 10px;
+}
+.new-comment-label {
+  padding: 10px;
+}
+.input {
+  padding: 4px;
+}
+.username-input {
+  width: 30%;
+}
+.comment-input {
+  width: 60%;
+  height: 60%;
 }

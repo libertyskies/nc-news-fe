@@ -24,6 +24,12 @@ export default function ArticleCard({ article_id }) {
           src={article[0].article_img_url}
           alt={`an image of ${article[0].title}`}
         />
+        <div className="article-card-stats">
+          <p className="article-card-votes">Likes: {article[0].votes}</p>
+          <p className="article-card-comment-count">
+            Comments: {article[0].comment_count}
+          </p>
+        </div>
       </div>
     </Link>
   );
