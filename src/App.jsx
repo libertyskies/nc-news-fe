@@ -19,6 +19,7 @@ function App() {
         />
         <Route path="/articles/:article_id" element={<SingleArticle />} />
         <Route path="/topic/:topic" element={<ArticleList />} />
+        <Route path="/:topic" element={<ArticleList />} />
         <Route path="*" element={<p>Page not found</p>} />
       </Routes>
     </>
