@@ -23,7 +23,7 @@ export default function NavBar() {
           navTopic += " | ";
         }
         return (
-          <Link to={`/${topic}`} key={`${topic}`} className="nav-item">
+          <Link to={`/topic/${topic}`} key={`${topic}`} className="nav-item">
             {navTopic}
           </Link>
         );
