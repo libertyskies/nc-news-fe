@@ -57,7 +57,15 @@ h1 {
   border: black solid;
   padding: 10px;
 }
-
+.article-card-stats {
+  display: flex;
+}
+.article-card-votes {
+  margin-left: 10%;
+}
+.article-card-comment-count {
+  margin-left: 30%;
+}
 .article-img {
   width: 70%;
 }
