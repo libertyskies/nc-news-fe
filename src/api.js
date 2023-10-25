@@ -51,3 +51,17 @@ export const patchCommentVotes = (comment_id, votes) => {
       return comment[0].votes;
     });
 };
+
+export const postComment = (username, comment, article_id) => {
+  const newComment = {
+    username: username,
+    body: comment,
+  };
+  const id = article_id.id;
+
+  return request
+    .post(`articles/${id}/comments`, newComment)
+    .then(({ data: { comment } }) => {
+      return comment[0];
+    });
+};

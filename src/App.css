@@ -124,3 +124,24 @@ h1 {
 .comment-body {
   font-size: 19px;
 }
+
+.new-comment-form {
+  margin: 18px;
+  display: block;
+}
+.new-comment {
+  padding: 10px;
+}
+.new-comment-label {
+  padding: 10px;
+}
+.input {
+  padding: 4px;
+}
+.username-input {
+  width: 30%;
+}
+.comment-input {
+  width: 60%;
+  height: 60%;
+}

@@ -35,7 +35,7 @@ export default function SingleArticle() {
       />
       <p className="single-article-text">{article[0].body}</p>
       <VoteAdder item={article[0]} />
-      <CommentAdder />
+      <CommentAdder id={article[0].article_id} />
       {commentsHidden ? (
         <>
           <button
