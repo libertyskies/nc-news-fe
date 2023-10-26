@@ -10,9 +10,9 @@ export const getTopics = () => {
   });
 };
 
-export const getAllArticles = (topic, sort_by) => {
+export const getAllArticles = (topic, sortby, order) => {
   return request
-    .get("articles", { params: { topic, sort_by } })
+    .get("articles", { params: { topic, sortby, order } })
     .then(({ data: { articles } }) => {
       return articles;
     });
