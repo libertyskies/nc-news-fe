@@ -65,3 +65,11 @@ export const postComment = (username, comment, article_id) => {
       return comment[0];
     });
 };
+
+export const getArticlesByTopic = (topic) => {
+  return request
+    .get(`articles?topic=${topic}`)
+    .then(({ data: { articles } }) => {
+      return articles;
+    });
+};
