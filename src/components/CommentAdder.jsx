@@ -36,7 +36,11 @@ export default function CommentAdder(id) {
         setIsCommentLoading(false);
       })
       .catch((err) => {
-        setPostingError(err.response.data.msg);
+        if (err.message === "Network Error") {
+          setPostingError(err.message);
+        } else {
+          setPostingError(err.response.data.msg);
+        }
         setHasPosted(false);
         setIsCommentLoading(false);
         setIsPageLoading(false);
@@ -85,8 +89,6 @@ export default function CommentAdder(id) {
           <button disabled={isCommentLoading}>Submit</button>
         </form>
       )}
-      {isCommentLoading ? <p>Posting Comment...</p> : ""}
-      {hasPosted ? <p>Comment posted</p> : ""}
       {postingError ? (
         <p className="posting-error-msg error-msg">
           Comment post failed: {postingError}
@@ -94,6 +96,8 @@ export default function CommentAdder(id) {
       ) : (
         <p></p>
       )}
+      {isCommentLoading ? <p>Posting Comment...</p> : ""}
+      {hasPosted ? <p>Comment posted</p> : ""}
     </>
   );
 }
