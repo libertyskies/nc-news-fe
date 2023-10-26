@@ -3,12 +3,11 @@ import * as api from "../api";
 import { useParams, useSearchParams } from "react-router-dom";
 import ArticleCard from "./ArticleCard";
 
-export default function ArticleList({ homeExists }) {
+export default function ArticleList() {
   const [articles, setArticles] = useState([]);
   const { topic } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
   const [isLoading, setIsLoading] = useState(true);
-  //const [topicExists, setTopicExists] = useState(true);
   const [isError, setIsError] = useState(null);
   const [sortBy, setSortBy] = useState(
     searchParams.get("sort_by") || "created_at"
