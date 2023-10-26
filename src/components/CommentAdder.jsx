@@ -4,34 +4,45 @@ import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 
 export default function CommentAdder(id) {
-  const [isLoading, setIsLoading] = useState(true);
+  const [isPageLoading, setIsPageLoading] = useState(true);
   const [typingComment, setTypingComment] = useState("");
-  const [finalComment, setFinalComment] = useState("");
   const [username, setUsername] = useState("");
   const [hasPosted, setHasPosted] = useState(false);
+  const [isCommentLoading, setIsCommentLoading] = useState(false);
   const [postingError, setPostingError] = useState(null);
+
   useEffect(() => {
-    setIsLoading(false);
+    setIsPageLoading(false);
     setHasPosted(false);
     setPostingError(false);
+    setIsCommentLoading(false);
   }, []);
 
-  useEffect(() => {}, [hasPosted]);
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setFinalComment(typingComment);
+  useEffect(() => {
+    setPostingError(null);
+    setIsCommentLoading(false);
+  }, [typingComment, username]);
 
+  const handleSubmit = (e) => {
+    setIsCommentLoading(true);
+    e.preventDefault();
     api
-      .postComment(username, finalComment, id)
+      .postComment(username, typingComment, id)
       .then(() => {
+        setUsername("");
+        setTypingComment("");
         setPostingError(null);
         setHasPosted(true);
+        setIsCommentLoading(false);
       })
       .catch((err) => {
         setPostingError(err.response.data.msg);
         setHasPosted(false);
+        setIsCommentLoading(false);
+        setIsPageLoading(false);
       });
   };
+
   const handleCommentChange = (e) => {
     setTypingComment(e.target.value);
   };
@@ -42,7 +53,7 @@ export default function CommentAdder(id) {
 
   return (
     <>
-      {isLoading ? (
+      {isPageLoading ? (
         <p>Loading...</p>
       ) : (
         <form className="new-comment-form" onSubmit={handleSubmit}>
@@ -56,6 +67,7 @@ export default function CommentAdder(id) {
             id="username"
             type="text"
             required
+            value={username}
             onChange={handleUsername}
           />
           <label htmlFor="comment" className="new-comment new-comment-label">
@@ -66,15 +78,19 @@ export default function CommentAdder(id) {
             name="comment"
             id="comment"
             type="text"
+            value={typingComment}
             onChange={handleCommentChange}
             required
           />
-          <button>Submit</button>
+          <button disabled={isCommentLoading}>Submit</button>
         </form>
       )}
-      {hasPosted ? <p>Comment posted</p> : <p></p>}
+      {isCommentLoading ? <p>Posting Comment...</p> : ""}
+      {hasPosted ? <p>Comment posted</p> : ""}
       {postingError ? (
-        <p className="posting-error-msg error-msg">{postingError}</p>
+        <p className="posting-error-msg error-msg">
+          Comment post failed: {postingError}
+        </p>
       ) : (
         <p></p>
       )}
