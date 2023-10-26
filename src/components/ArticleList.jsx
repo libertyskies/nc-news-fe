@@ -8,6 +8,7 @@ export default function ArticleList({ homeExists }) {
   const { topic } = useParams();
   const [isLoading, setIsLoading] = useState(true);
   const [topicExists, setTopicExists] = useState(true);
+  const [isError, setIsError] = useState(false);
 
   useEffect(() => {
     if (topic) {
@@ -19,8 +20,10 @@ export default function ArticleList({ homeExists }) {
         });
         if (topicInTopics.length === 1) {
           setTopicExists(true);
+          setIsError(false);
         } else {
           setTopicExists(false);
+          setIsError(true);
         }
       });
     }
@@ -28,21 +31,28 @@ export default function ArticleList({ homeExists }) {
 
   useEffect(() => {
     setIsLoading(true);
+    setIsError(false);
     if (homeExists) {
       api.getAllArticles().then((articles) => {
         setArticles(articles);
         setIsLoading(false);
+        setIsError(false);
       });
     } else if (topicExists) {
       api.getArticlesByTopic(topic).then((articles) => {
         setArticles(articles);
         setIsLoading(false);
       });
+    } else {
+      setIsError(true);
+      setIsLoading(false);
     }
   }, [topic, topicExists, homeExists]);
 
   return isLoading ? (
     <p>Loading...</p>
+  ) : isError ? (
+    <p>Oops... Topic not found</p>
   ) : topicExists || homeExists ? (
     <main>
       <section className="articles-container">
