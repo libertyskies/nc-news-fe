@@ -10,10 +10,12 @@ export const getTopics = () => {
   });
 };
 
-export const getAllArticles = () => {
-  return request.get("articles").then(({ data: { articles } }) => {
-    return articles;
-  });
+export const getAllArticles = (topic, sort_by) => {
+  return request
+    .get("articles", { params: { topic, sort_by } })
+    .then(({ data: { articles } }) => {
+      return articles;
+    });
 };
 
 export const getArticleById = (article_id) => {
@@ -63,13 +65,5 @@ export const postComment = (username, comment, article_id) => {
     .post(`articles/${id}/comments`, newComment)
     .then(({ data: { comment } }) => {
       return comment[0];
-    });
-};
-
-export const getArticlesByTopic = (topic) => {
-  return request
-    .get(`articles?topic=${topic}`)
-    .then(({ data: { articles } }) => {
-      return articles;
     });
 };

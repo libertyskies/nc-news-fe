@@ -1,59 +1,42 @@
 import React, { useState, useEffect } from "react";
 import * as api from "../api";
-import { useParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 import ArticleCard from "./ArticleCard";
 
 export default function ArticleList({ homeExists }) {
   const [articles, setArticles] = useState([]);
   const { topic } = useParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const [isLoading, setIsLoading] = useState(true);
-  const [topicExists, setTopicExists] = useState(true);
-  const [isError, setIsError] = useState(false);
-
-  useEffect(() => {
-    if (topic) {
-      api.getTopics().then((topics) => {
-        let topicInTopics = topics.filter((item) => {
-          if (item.slug === topic) {
-            return item.slug;
-          }
-        });
-        if (topicInTopics.length === 1) {
-          setTopicExists(true);
-          setIsError(false);
-        } else {
-          setTopicExists(false);
-          setIsError(true);
-        }
-      });
-    }
-  }, [topic]);
+  //const [topicExists, setTopicExists] = useState(true);
+  const [isError, setIsError] = useState(null);
+  const [sortBy, setSortBy] = useState(
+    searchParams.get("sort_by") || "created_at"
+  );
+  const [order, setOrder] = useState(searchParams.get("order") || "desc");
 
   useEffect(() => {
     setIsLoading(true);
-    setIsError(false);
-    if (homeExists) {
-      api.getAllArticles().then((articles) => {
+    setIsError(null);
+    setSearchParams({ sort_by: sortBy, order: order });
+    api
+      .getAllArticles(topic, sortBy)
+      .then((articles) => {
         setArticles(articles);
         setIsLoading(false);
-        setIsError(false);
-      });
-    } else if (topicExists) {
-      api.getArticlesByTopic(topic).then((articles) => {
-        setArticles(articles);
+        setIsError(null);
+      })
+      .catch((err) => {
+        setIsError(err.response.data.msg);
         setIsLoading(false);
       });
-    } else {
-      setIsError(true);
-      setIsLoading(false);
-    }
-  }, [topic, topicExists, homeExists]);
+  }, [topic, order, sortBy]);
 
   return isLoading ? (
     <p>Loading...</p>
   ) : isError ? (
-    <p>Oops... Topic not found</p>
-  ) : topicExists || homeExists ? (
+    <p>{isError}</p>
+  ) : (
     <main>
       <section className="articles-container">
         {articles.map((article) => {
@@ -67,7 +50,5 @@ export default function ArticleList({ homeExists }) {
         })}
       </section>
     </main>
-  ) : (
-    <p>Oops... Topic not found</p>
   );
 }
