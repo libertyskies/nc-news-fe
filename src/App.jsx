@@ -11,8 +11,8 @@ function App() {
     <>
       <Header />
       <Routes>
-        <Route path="/" element={<ArticleList />} />
-        <Route path="/home" element={<ArticleList />} />
+        <Route path="/" element={<ArticleList homeExists={true} />} />
+        <Route path="/home" element={<ArticleList homeExists={true} />} />
         <Route
           path="/articles/:article_id/comments"
           element={<AllComments />}
