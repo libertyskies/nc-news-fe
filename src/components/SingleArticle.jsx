@@ -9,13 +9,26 @@ export default function SingleArticle() {
   const [article, setArticle] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [commentsHidden, setCommentsHidden] = useState(true);
+  const [isError, setIsError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(null);
   const { article_id } = useParams();
 
   useEffect(() => {
-    api.getArticleById(article_id).then((article) => {
-      setArticle(article);
-      setIsLoading(false);
-    });
+    api
+      .getArticleById(article_id)
+      .then((article) => {
+        setArticle(article);
+        setIsLoading(false);
+        setIsError(false);
+      })
+      .catch((err) => {
+        setIsLoading(false);
+        setIsError(true);
+        if (err.message === "Network Error") {
+          setErrorMessage(err.message);
+        }
+        setErrorMessage(err.response.data.msg);
+      });
   }, []);
 
   const handleClick = () => {
@@ -24,6 +37,8 @@ export default function SingleArticle() {
 
   return isLoading ? (
     <p>Loading article...</p>
+  ) : isError ? (
+    <p>Error loading page: {errorMessage}</p>
   ) : (
     <div className="article-page">
       <h2 className="single-article-title"> {article[0].title}</h2>
