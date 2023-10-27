@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import * as api from "../api";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
+import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
 export default function CommentAdder(id) {
   const [isPageLoading, setIsPageLoading] = useState(true);
@@ -10,6 +11,7 @@ export default function CommentAdder(id) {
   const [hasPosted, setHasPosted] = useState(false);
   const [isCommentLoading, setIsCommentLoading] = useState(false);
   const [postingError, setPostingError] = useState(null);
+  const { currentUser, setCurrentUser } = useContext(CurrentUserContext);
 
   useEffect(() => {
     setIsPageLoading(false);
@@ -32,6 +34,7 @@ export default function CommentAdder(id) {
         setUsername("");
         setTypingComment("");
         setPostingError(null);
+        setCurrentUser({ username: username });
         setHasPosted(true);
         setIsCommentLoading(false);
       })
