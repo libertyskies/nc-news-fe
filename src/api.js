@@ -59,7 +59,7 @@ export const postComment = (username, comment, article_id) => {
     username: username,
     body: comment,
   };
-  const id = article_id.id;
+  const id = article_id;
 
   return request
     .post(`articles/${id}/comments`, newComment)
