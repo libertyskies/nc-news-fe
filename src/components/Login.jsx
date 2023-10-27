@@ -36,7 +36,11 @@ export default function Login({ setIsLoggedIn, setIsError, isError }) {
         <label htmlFor="username">Username</label>
         <input name="username" onChange={handleUsername} required></input>
         <button>Submit</button>
-        {isError ? <p> Oops... {errorMessage}</p> : <p></p>}
+        {isError ? (
+          <p className="error-msg"> Oops... {errorMessage}</p>
+        ) : (
+          <p></p>
+        )}
       </form>
     </section>
   );
