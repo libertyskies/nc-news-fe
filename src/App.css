@@ -145,10 +145,13 @@ h1 {
   width: 60%;
   height: 60%;
 }
+.select-container {
+  margin-left: 20%;
+}
 
-#selector {
+.selector {
   padding: 0.5em;
-  margin: 0;
+  margin: 3px;
   border-radius: 8px;
   outline: none;
 }
@@ -184,4 +187,11 @@ nav {
   float: right;
   padding: 0px;
   margin-right: 10%;
+}
+
+.error-msg {
+  color: darkred;
+}
+.login-link {
+  text-decoration: underline;
 }

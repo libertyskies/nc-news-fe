@@ -32,9 +32,14 @@ export default function ArticleList() {
 
   const handleSelect = (e) => {
     const params = e.target.value.split(" ");
-    if (params.length === 2) {
-      setOrder(params[1]);
+    if (params.length === 1) {
       setSortBy(params[0]);
+    }
+  };
+  const handleOrder = (e) => {
+    const params = e.target.value.split(" ");
+    if (params.length === 1) {
+      setOrder(params[0]);
     }
   };
 
@@ -44,18 +49,31 @@ export default function ArticleList() {
     <p>{isError}</p>
   ) : (
     <main>
-      <select name="selector" id="selector" onChange={handleSelect}>
-        <option default>
-          Sort by {sortBy}
-          {"  ("}
-          {order}
-          {")"}
-        </option>
-        <option value="date desc">Date (newest first)</option>
-        <option value="date asc">Date (oldest first)</option>
-        <option value="votes desc">Votes (descending)</option>
-        <option value="votes asc">Votes (ascending)</option>
-      </select>
+      <div className="select-container">
+        <select
+          name="selector"
+          id="selector"
+          className="selector"
+          onChange={handleSelect}
+        >
+          <option default>Sort by {sortBy}</option>
+          <option value="date">Date</option>
+          <option value="votes">Votes</option>
+          <option value="title">Title</option>
+          <option value="author">Author</option>
+          <option value="id">ID</option>
+        </select>
+        <select
+          name="order-selector"
+          className="selector"
+          id="order-selector"
+          onChange={handleOrder}
+        >
+          <option default>Order by {order}</option>
+          <option value="desc">desc</option>
+          <option value="asc">asc</option>
+        </select>
+      </div>
       <section className="articles-container">
         {articles.map((article) => {
           return (
