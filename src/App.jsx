@@ -5,6 +5,7 @@ import { Routes, Route } from "react-router-dom";
 import SingleArticle from "./components/SingleArticle";
 import AllComments from "./components/AllComments";
 import ArticleList from "./components/ArticleList";
+import UserDetails from "./components/UserDetails";
 
 function App() {
   return (
@@ -19,6 +20,8 @@ function App() {
         />
         <Route path="/articles/:article_id" element={<SingleArticle />} />
         <Route path="/topic/:topic" element={<ArticleList />} />
+        <Route path="/login" element={<UserDetails />} />
+        <Route path="/users/:user" element={<UserDetails />} />
         <Route path="*" element={<p>Page not found</p>} />
       </Routes>
     </>

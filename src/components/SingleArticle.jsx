@@ -16,7 +16,7 @@ export default function SingleArticle() {
       setArticle(article);
       setIsLoading(false);
     });
-  }, [commentsHidden]);
+  }, []);
 
   const handleClick = () => {
     setCommentsHidden(!commentsHidden);

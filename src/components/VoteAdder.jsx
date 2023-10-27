@@ -5,24 +5,21 @@ export default function VoteAdder({ item }) {
   const [itemVotes, setItemVotes] = useState(item.votes);
   const [userVotes, setUserVotes] = useState(0);
   const [isError, setIsError] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    setIsLoading(true);
     let newVotes = itemVotes + userVotes;
     setItemVotes(newVotes);
-    setIsLoading(false);
-  }, [isError]);
+  }, []);
 
   const updateVotes = (num) => {
-    setUserVotes(userVotes + num);
+    setUserVotes((currentVotes) => currentVotes + num);
 
     item.comment_id
       ? api
           .patchCommentVotes(item.comment_id, num)
           .then((votes) => {
+            console.log(votes);
             setIsError(false);
-            setItemVotes(votes);
           })
           .catch((err) => {
             setUserVotes(0);
@@ -32,18 +29,15 @@ export default function VoteAdder({ item }) {
           .patchArticleVotes(item.article_id, num)
           .then((votes) => {
             setIsError(false);
-            setItemVotes(votes);
           })
           .catch((err) => {
             setUserVotes(0);
             setIsError(true);
           });
   };
-  return isLoading ? (
-    <p>Loading Votes...</p>
-  ) : (
+  return (
     <div className={item.comment_id ? "comment-votes" : "article-votes"}>
-      <p>Votes: {item.votes + userVotes}</p>
+      <p>Votes: {itemVotes + userVotes}</p>
       <button
         disabled={userVotes === 1}
         onClick={() => {
