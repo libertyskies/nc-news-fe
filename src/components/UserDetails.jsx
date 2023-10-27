@@ -10,32 +10,6 @@ export default function UserDetails() {
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
 
-  // useEffect(() => {
-  //   if (currentUser.username) {
-  //     api
-  //       .getUserByUsername(currentUser.username)
-  //       .then((user) => {
-  //         setIsLoggedIn(true);
-  //         setIsLoading(false);
-  //         setIsError(false);
-  //       })
-  //       .catch((err) => {
-  //         setIsError(true);
-  //         setIsLoggedIn(false);
-  //         setIsLoading(false);
-  //       });
-  //   }
-  // }, [currentUser]);
-  // useEffect(() => {
-  //   if (currentUser.username) {
-  //     setIsLoading(false);
-  //     setIsLoggedIn(true);
-  //   } else {
-  //     setIsLoading(false);
-  //     setIsLoggedIn(false);
-  //   }
-  // }, [currentUser]);
-
   useEffect(() => {
     setIsLoading(false);
   }, [isLoggedIn]);

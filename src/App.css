@@ -164,6 +164,7 @@ header {
   max-height: 50px;
   float: right;
   margin-right: 10%;
+  padding: 0px;
 }
 nav {
   margin-left: 13%;
@@ -177,4 +178,10 @@ nav {
   padding: 10px;
   border-radius: 15px;
   width: 10%;
+}
+.log-out,
+.log-in {
+  float: right;
+  padding: 0px;
+  margin-right: 10%;
 }
