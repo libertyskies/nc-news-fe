@@ -16,7 +16,7 @@ export default function NavBar() {
     });
   }, []);
   return (
-    <nav>
+    <nav className="navbar">
       {allTopics.map((topic, index) => {
         let navTopic = topic;
         if (index !== allTopics.length - 1) {
