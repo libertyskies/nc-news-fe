@@ -38,7 +38,7 @@ export default function SingleArticle() {
   return isLoading ? (
     <p>Loading article...</p>
   ) : isError ? (
-    <p>Error loading page: {errorMessage}</p>
+    <p className="error-msg">Error loading page: {errorMessage}</p>
   ) : (
     <div className="article-page">
       <h2 className="single-article-title"> {article[0].title}</h2>

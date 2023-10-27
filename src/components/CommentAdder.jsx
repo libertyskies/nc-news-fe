@@ -77,7 +77,9 @@ export default function CommentAdder(id) {
           ) : (
             <Link to="/login">
               {" "}
-              <p>Please Log in to post a comment</p>
+              <p className="error-msg login-link">
+                Please Log in to post a comment
+              </p>
             </Link>
           )}
           <form className="new-comment-form" onSubmit={handleSubmit}>

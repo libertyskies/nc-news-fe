@@ -188,3 +188,10 @@ nav {
   padding: 0px;
   margin-right: 10%;
 }
+
+.error-msg {
+  color: darkred;
+}
+.login-link {
+  text-decoration: underline;
+}
