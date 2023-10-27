@@ -41,7 +41,7 @@ export default function AllComments() {
       <Link to={`/articles/${article_id}`}>
         <h3 className="single-article-title">... {articleTitle}</h3>
       </Link>
-      <h4 className="comments-title">Comments</h4>
+      <h4 className="comments-title">All Comments</h4>
       <CommentAdder />
       <div className="comment-list">
         {allComments.map((comment, index) => {

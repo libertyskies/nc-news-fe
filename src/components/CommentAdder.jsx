@@ -9,6 +9,7 @@ export default function CommentAdder(id) {
   const [isPageLoading, setIsPageLoading] = useState(true);
   const [typingComment, setTypingComment] = useState("");
   const [username, setUsername] = useState("");
+  const { article_id } = useParams();
   const [hasPosted, setHasPosted] = useState(false);
   const [isCommentLoading, setIsCommentLoading] = useState(false);
   const [postingError, setPostingError] = useState(null);
@@ -31,7 +32,7 @@ export default function CommentAdder(id) {
     e.preventDefault();
     if (username === currentUser.username) {
       api
-        .postComment(username, typingComment, id)
+        .postComment(username, typingComment, article_id)
         .then(() => {
           setUsername("");
           setTypingComment("");

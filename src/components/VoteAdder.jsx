@@ -18,7 +18,6 @@ export default function VoteAdder({ item }) {
       ? api
           .patchCommentVotes(item.comment_id, num)
           .then((votes) => {
-            console.log(votes);
             setIsError(false);
           })
           .catch((err) => {
